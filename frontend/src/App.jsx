@@ -4,6 +4,7 @@ import Home from './Home'
 import New from './New'
 import MyTales from './MyTales'
 import Navbar from './Navbar'
+import Profile from './Profile'
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Route path = '/new' element = {<New/>}/>
         <Route path = '/mytales' element = {<MyTales/>}/>
         <Route path='/' element={<h1>Hello</h1>} />
+        <Route path = '/profile' element = {<Profile/>}/>
       </Routes>
     </>
   )

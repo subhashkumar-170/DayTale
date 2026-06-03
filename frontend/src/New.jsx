@@ -18,13 +18,54 @@ export default function New() {
     }))
   }
 
-  function handleSubmit(e) {
-    e.preventDefault()
+  async function handleSubmit(e) {
+  e.preventDefault();
 
-    console.log(formData)
-
-    alert('Diary Entry Submitted!')
+  // Validation
+  if (!formData.title.trim()) {
+    alert("Please enter a title");
+    return;
   }
+
+  if (!formData.content.trim()) {
+    alert("Please enter content");
+    return;
+  }
+
+  if (!formData.mood) {
+    alert("Please select a mood");
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost:8080/entries", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to save entry");
+    }
+
+    const data = await response.json();
+
+    console.log("Saved:", data);
+    alert("Diary Entry Saved Successfully!");
+
+    setFormData({
+      title: "",
+      content: "",
+      mood: ""
+    });
+
+  } catch (error) {
+    console.error(error);
+    alert("Error saving diary entry");
+  }
+}
 
   return (
     <div className="container">
