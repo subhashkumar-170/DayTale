@@ -113,7 +113,7 @@ export default function New() {
                 value="Happy"
                 onChange={handleChange}
               />
-              😊 Happy
+               Happy
             </label>
 
             <label className="mood-card">
@@ -123,7 +123,7 @@ export default function New() {
                 value="Sad"
                 onChange={handleChange}
               />
-              😢 Sad
+               Sad
             </label>
 
             <label className="mood-card">
@@ -133,7 +133,7 @@ export default function New() {
                 value="Normal"
                 onChange={handleChange}
               />
-              😐 Normal
+               Normal
             </label>
 
             <label className="mood-card">
@@ -143,7 +143,7 @@ export default function New() {
                 value="Anger"
                 onChange={handleChange}
               />
-              😡 Anger
+               Anger
             </label>
             
           </div>
