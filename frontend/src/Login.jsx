@@ -6,6 +6,8 @@ export default function Login() {
 
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(false);
+
   const [formData, setFormData] = useState({
     username: "",
     password: ""
@@ -21,7 +23,6 @@ export default function Login() {
   }
 
   async function handleSubmit(e) {
-
     e.preventDefault();
 
     if (!formData.username.trim()) {
@@ -35,6 +36,7 @@ export default function Login() {
     }
 
     try {
+      setLoading(true);
 
       const response = await fetch(
         "https://daytale-backend.onrender.com/auth/login",
@@ -59,13 +61,13 @@ export default function Login() {
       localStorage.setItem("token", token);
       localStorage.setItem("username", formData.username);
 
-      alert("Login Successful");
-
       navigate("/");
 
     } catch (error) {
       console.error(error);
       alert("Login Failed");
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -78,10 +80,7 @@ export default function Login() {
           Login
         </h1>
 
-        <form
-          onSubmit={handleSubmit}
-          className="login-form"
-        >
+        <form onSubmit={handleSubmit} className="login-form">
 
           <input
             type="text"
@@ -90,6 +89,7 @@ export default function Login() {
             value={formData.username}
             onChange={handleChange}
             className="login-input"
+            disabled={loading}
           />
 
           <input
@@ -99,24 +99,26 @@ export default function Login() {
             value={formData.password}
             onChange={handleChange}
             className="login-input"
+            disabled={loading}
           />
 
           <button
             type="submit"
             className="login-btn"
+            disabled={loading}
           >
-            Login
+            {loading ? (
+              <span className="loader"></span>
+            ) : (
+              "Login"
+            )}
           </button>
 
         </form>
 
         <p className="register-text">
           Don't have an account?{" "}
-
-          <Link
-            to="/register"
-            className="register-link"
-          >
+          <Link to="/register" className="register-link">
             Register
           </Link>
         </p>
