@@ -47,7 +47,7 @@ export default function New() {
   }
 
   try {
-    const response = await fetch("http://localhost:8080/entries", {
+    const response = await fetch("http://daytale-backend.onrender.com/entries", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

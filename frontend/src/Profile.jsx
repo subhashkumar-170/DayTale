@@ -25,7 +25,7 @@ export default function Profile() {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        "http://localhost:8080/entries",
+        "http://daytale-backend.onrender.com/entries",
         {
           headers: {
             Authorization: `Bearer ${token}`,

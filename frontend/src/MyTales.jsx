@@ -34,7 +34,7 @@ export default function MyTales() {
     const token = localStorage.getItem("token");
 
     const response = await fetch(
-      `http://localhost:8080/entries/${id}`,
+      `http://daytale-backend.onrender.com/entries/${id}`,
       {
         method: "DELETE",
         headers: {
@@ -62,7 +62,7 @@ export default function MyTales() {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        "http://localhost:8080/entries",
+        "http://daytale-backend.onrender.com/entries",
         {
           headers: {
             Authorization: `Bearer ${token}`

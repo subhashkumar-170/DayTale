@@ -13,7 +13,7 @@ const updateEntry = async () => {
   try {
 
     const response = await fetch(
-      `http://localhost:8080/entries/${entry.id}`,
+      `http://daytale-backend.onrender.com/entries/${entry.id}`,
       {
         method: "PUT",
 

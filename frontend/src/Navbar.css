@@ -163,10 +163,7 @@
 }
 
 .brand-name {
-  color: white;
-  font-size: 1.2rem;
-  font-weight: bold;
-  letter-spacing: 0.5px;
+  display: none;
 }
 
 
@@ -187,7 +184,11 @@
   }
 
   .brand-name {
+    display: block;
     margin: 0;
     font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    letter-spacing: 0.5px;
   }
 }
