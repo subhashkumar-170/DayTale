@@ -1,0 +1,154 @@
+.register-container {
+  min-height: 90vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 2rem;
+}
+
+.register-card {
+  width: 100%;
+  max-width: 450px;
+
+  background: white;
+
+  padding: 2.5rem;
+
+  border-radius: 20px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+
+  animation: fadeInUp 0.5s ease;
+}
+
+.register-title {
+  text-align: center;
+
+  margin-bottom: 2rem;
+
+  color: #111827;
+
+  font-size: 2rem;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1.2rem;
+}
+
+.register-input {
+  width: 100%;
+
+  padding: 14px 16px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 12px;
+
+  outline: none;
+
+  font-size: 1rem;
+
+  transition: 0.3s;
+}
+
+.register-input:focus {
+  border-color: #111827;
+
+  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.08);
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.eye-btn {
+  position: absolute;
+
+  top: 50%;
+  right: 14px;
+
+  transform: translateY(-50%);
+
+  border: none;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  font-size: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #555;
+
+  transition: 0.3s;
+}
+
+.eye-btn:hover {
+  color: black;
+
+  transform: translateY(-50%) scale(1.1);
+}
+.register-btn {
+  border: none;
+
+  padding: 14px;
+
+  border-radius: 12px;
+
+  background: #111827;
+
+  color: white;
+
+  font-size: 1rem;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.register-btn:hover {
+  background: black;
+
+  transform: translateY(-2px);
+}
+
+.login-text {
+  margin-top: 1.5rem;
+
+  text-align: center;
+
+  color: #555;
+}
+
+.login-link {
+  text-decoration: none;
+
+  color: #111827;
+
+  font-weight: 600;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
+
+@keyframes fadeInUp {
+
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

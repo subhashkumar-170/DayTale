@@ -8,6 +8,7 @@ export default function Navbar() {
   return (
     <>
       <div className="nav-bar">
+         
 
         <button
           className="hamburger"
@@ -17,11 +18,14 @@ export default function Navbar() {
         </button>
 
         <nav className="desktop-nav">
-          <Link to="/home">Home</Link>
+          <Link to="/">Home</Link>
           <Link to="/mytales">My Tales</Link>
           <Link to="/new">New</Link>
           <Link to="/profile">Profile</Link>
         </nav>
+        <div className="brand-name">
+          Digital Diary
+        </div>
 
       </div>
 
@@ -41,7 +45,7 @@ export default function Navbar() {
           ✕
         </button>
 
-        <Link to="/home" onClick={() => setMenuOpen(false)}>
+        <Link to="/" onClick={() => setMenuOpen(false)}>
           Home
         </Link>
 

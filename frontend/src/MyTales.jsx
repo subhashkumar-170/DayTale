@@ -31,13 +31,17 @@ export default function MyTales() {
       return;
     }
   try {
+    const token = localStorage.getItem("token");
+
     const response = await fetch(
       `http://localhost:8080/entries/${id}`,
       {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       }
     );
-
     if (!response.ok) {
       throw new Error("Delete failed");
     }
@@ -55,7 +59,16 @@ export default function MyTales() {
 
   async function fetchEntries() {
     try {
-      const response = await fetch("http://localhost:8080/entries");
+      const token = localStorage.getItem("token");
+
+      const response = await fetch(
+        "http://localhost:8080/entries",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to fetch entries");

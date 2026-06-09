@@ -63,3 +63,30 @@
     margin-left: 0;
   }
 }
+.memory-link {
+  margin-bottom: 1rem;
+
+  padding: 12px;
+
+  background: #f4f7fb;
+
+  border-radius: 10px;
+
+  word-break: break-word;
+}
+
+.memory-link span {
+  font-weight: bold;
+
+  color: #111827;
+}
+
+.memory-link a {
+  color: #2563eb;
+
+  text-decoration: none;
+}
+
+.memory-link a:hover {
+  text-decoration: underline;
+}

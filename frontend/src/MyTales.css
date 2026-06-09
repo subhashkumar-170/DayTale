@@ -488,9 +488,13 @@
   }
 
   .filter-bar select,
-  .filter-btn {
-    width: 100%;
-  }
+  .filter-bar select {
+  width: 100%;
+}
+
+.filter-btn {
+  width: calc(50% - 3px);
+}
 
   .filter-bar select {
     font-size: 0.8rem;

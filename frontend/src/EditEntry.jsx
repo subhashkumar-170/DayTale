@@ -6,15 +6,22 @@ export default function EditEntry({ entry, isEditing }) {
   const [content, setContent] = useState(entry.content);
   const [mood, setMood] = useState(entry.mood);
 
-  const updateEntry = async () => {
+const updateEntry = async () => {
+
+  const token = localStorage.getItem("token");
+
   try {
+
     const response = await fetch(
       `http://localhost:8080/entries/${entry.id}`,
       {
         method: "PUT",
+
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
         },
+
         body: JSON.stringify({
           title,
           content,
@@ -25,10 +32,11 @@ export default function EditEntry({ entry, isEditing }) {
 
     if (response.ok) {
       alert("Entry updated successfully");
-      window.location.reload(); // quick refresh for now
+      window.location.reload();
     } else {
       alert("Failed to update entry");
     }
+
   } catch (error) {
     console.error(error);
     alert("Something went wrong");
@@ -65,7 +73,6 @@ export default function EditEntry({ entry, isEditing }) {
           <option value="Happy">Happy</option>
           <option value="Sad">Sad</option>
           <option value="Normal">Normal</option>
-          <option value="Excited">Excited</option>
           <option value="Anger">Anger</option>
         </select>
 

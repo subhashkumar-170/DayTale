@@ -6,7 +6,8 @@ export default function New() {
   const [formData, setFormData] = useState({
     title: '',
     content: '',
-    mood: ''
+    mood: '',
+    photoLink: ''
   })
 
   function handleChange(e) {
@@ -20,6 +21,14 @@ export default function New() {
 
   async function handleSubmit(e) {
   e.preventDefault();
+
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    alert("Please login first");
+    window.location.href = "/login";
+    return;
+  }
 
   // Validation
   if (!formData.title.trim()) {
@@ -41,7 +50,8 @@ export default function New() {
     const response = await fetch("http://localhost:8080/entries", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
       },
       body: JSON.stringify(formData)
     });
@@ -55,11 +65,12 @@ export default function New() {
     console.log("Saved:", data);
     alert("Diary Entry Saved Successfully!");
 
-    setFormData({
-      title: "",
-      content: "",
-      mood: ""
-    });
+   setFormData({
+    title: "",
+    content: "",
+    mood: "",
+    photoLink: ""
+  });
 
   } catch (error) {
     console.error(error);
@@ -96,6 +107,17 @@ export default function New() {
             placeholder="Write your thoughts..."
             rows="7"
             value={formData.content}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="input-group">
+          <label>Attach a Memory</label>
+
+          <input
+            type="text"
+            name="photoLink"
+            placeholder="Paste your Google Drive photo link..."
+            value={formData.photoLink}
             onChange={handleChange}
           />
         </div>
