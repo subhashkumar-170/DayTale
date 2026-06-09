@@ -4,13 +4,11 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./Register.css";
 
 export default function Register() {
-
   const navigate = useNavigate();
 
-    const [showPassword, setShowPassword] = useState(false);
-
-    const [showConfirmPassword, setShowConfirmPassword] =
-    useState(false);
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const [formData, setFormData] = useState({
     username: "",
@@ -19,7 +17,6 @@ export default function Register() {
   });
 
   function handleChange(e) {
-
     const { name, value } = e.target;
 
     setFormData((prev) => ({
@@ -29,7 +26,6 @@ export default function Register() {
   }
 
   async function handleSubmit(e) {
-
     e.preventDefault();
 
     if (!formData.username.trim()) {
@@ -53,6 +49,7 @@ export default function Register() {
     }
 
     try {
+      setLoading(true);
 
       const response = await fetch(
         "https://daytale-backend.onrender.com/auth/register",
@@ -73,30 +70,26 @@ export default function Register() {
       }
 
       alert("Registration Successful");
-
       navigate("/login");
 
     } catch (error) {
-
       console.error(error);
-
       alert("Registration Failed");
+
+    } finally {
+      setLoading(false);
     }
   }
 
   return (
     <div className="register-container">
-
       <div className="register-card">
 
         <h1 className="register-title">
           Register
         </h1>
 
-        <form
-          onSubmit={handleSubmit}
-          className="register-form"
-        >
+        <form onSubmit={handleSubmit} className="register-form">
 
           <input
             type="text"
@@ -105,94 +98,75 @@ export default function Register() {
             value={formData.username}
             onChange={handleChange}
             className="register-input"
+            disabled={loading}
           />
 
           <div className="password-wrapper">
-
             <input
-                type={showPassword ? "text" : "password"}
-                name="password"
-                placeholder="Enter Password"
-                value={formData.password}
-                onChange={handleChange}
-                className="register-input"
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="Enter Password"
+              value={formData.password}
+              onChange={handleChange}
+              className="register-input"
+              disabled={loading}
             />
 
             <button
-                type="button"
-                className="eye-btn"
-                onClick={() =>
-                setShowPassword(!showPassword)
-                }
+              type="button"
+              className="eye-btn"
+              disabled={loading}
+              onClick={() => setShowPassword(!showPassword)}
             >
-
-                {showPassword ? (
-                <FaEyeSlash />
-                ) : (
-                <FaEye />
-                )}
-
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
             </button>
+          </div>
 
-            </div>
-
-            <div className="password-wrapper">
-
+          <div className="password-wrapper">
             <input
-                type={showConfirmPassword ? "text" : "password"}
-                name="confirmPassword"
-                placeholder="Re-enter Password"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                className="register-input"
+              type={showConfirmPassword ? "text" : "password"}
+              name="confirmPassword"
+              placeholder="Re-enter Password"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              className="register-input"
+              disabled={loading}
             />
 
             <button
-                type="button"
-                className="eye-btn"
-                onClick={() =>
-                setShowConfirmPassword(
-                    !showConfirmPassword
-                )
-                }
+              type="button"
+              className="eye-btn"
+              disabled={loading}
+              onClick={() =>
+                setShowConfirmPassword(!showConfirmPassword)
+              }
             >
-
-                {showConfirmPassword ? (
-                <FaEyeSlash />
-                ) : (
-                <FaEye />
-                )}
-
+              {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
             </button>
-
-            </div>
-
-        
+          </div>
 
           <button
             type="submit"
             className="register-btn"
+            disabled={loading}
           >
-            Register
+            {loading ? (
+              <span className="loader"></span>
+            ) : (
+              "Register"
+            )}
           </button>
 
         </form>
 
         <p className="login-text">
-
           Already have an account?{" "}
-
-          <Link
-            to="/login"
-            className="login-link"
-          >
+          <Link to="/login" className="login-link">
             Login
           </Link>
-
         </p>
 
       </div>
-
     </div>
   );
 }
