@@ -37,7 +37,7 @@ export default function Login() {
     try {
 
       const response = await fetch(
-        "http://daytale-backend.onrender.com/auth/login",
+        "https://daytale-backend.onrender.com/auth/login",
         {
           method: "POST",
           headers: {

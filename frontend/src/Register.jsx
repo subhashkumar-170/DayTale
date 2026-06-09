@@ -55,7 +55,7 @@ export default function Register() {
     try {
 
       const response = await fetch(
-        "http://daytale-backend.onrender.com/auth/register",
+        "https://daytale-backend.onrender.com/auth/register",
         {
           method: "POST",
           headers: {
